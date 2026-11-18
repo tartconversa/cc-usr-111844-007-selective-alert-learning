@@ -1,0 +1,53 @@
+{
+  "name": "selective-alert-learning",
+  "tables": {
+    "alerts": [
+      {
+        "alert": "a1",
+        "household": "h1",
+        "day": "2026-10-01",
+        "score": 0.8,
+        "device": "v1",
+        "group": "rural",
+        "policy": "old",
+        "selected": true,
+        "probability": 0.8,
+        "urgent": false
+      },
+      {
+        "alert": "a2",
+        "household": "h2",
+        "day": "2026-10-01",
+        "score": 0.2,
+        "device": "v2",
+        "group": "urban",
+        "policy": "old",
+        "selected": false,
+        "probability": 0,
+        "urgent": false
+      }
+    ],
+    "labels": [
+      {
+        "alert": "a1",
+        "observed_at": "2026-10-03",
+        "label": 1,
+        "supersedes": null
+      }
+    ],
+    "policies": [
+      {
+        "policy": "old",
+        "start": "2026-01-01",
+        "end": "2026-10-31"
+      }
+    ],
+    "capacity": [
+      {
+        "day": "2026-10-01",
+        "slots": 1
+      }
+    ]
+  },
+  "options": {}
+}

@@ -1,0 +1,1 @@
+SCHEMA = {'alerts': ['alert', 'household', 'day', 'score', 'device', 'group', 'policy', 'selected', 'probability', 'urgent'], 'labels': ['alert', 'observed_at', 'label', 'supersedes'], 'policies': ['policy', 'start', 'end'], 'capacity': ['day', 'slots']}
