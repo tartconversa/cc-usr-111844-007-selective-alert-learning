@@ -5,11 +5,13 @@
 | 表 | 字段 |
 | --- | --- |
 | alerts | alert, household, day, score, device, group, policy, selected, probability, urgent |
-| labels | alert, observed_at, label, supersedes |
+| labels | label_id, alert, observed_at, label, supersedes |
 | policies | policy, start, end |
 | capacity | day, slots |
 
-label 是 0/1/null；observed_at 是结果对运营方可知的日期，supersedes 指向前一标签记录，真实资料可用 label_id 作为稳定标识。probability 为实际执行策略下的已知边际选择概率，非异常风险。urgent 必选但仍占核实名额；冻结时点以后可知的标签不得进入该时点分析。
+label 是 0/1/null；label_id 是稳定标签记录标识，observed_at 是结果对运营方可知的日期，supersedes 指向前一标签记录的 label_id。probability 为实际执行策略下的已知边际选择概率，非异常风险。urgent 必选但仍占核实名额；冻结时点以后可知的标签不得进入该时点分析。
+
+紧急单超过当日全部容量时必须显式呈现不可执行冲突，不能丢掉人工标记。某个 alert 的标签修订须同属该 alert，分叉或悬空 supersedes 不能静默选择一条。用于分析的 cutoff 与选择策略生效日属于独立输入，选择记录需能区分已知资料与后来补报。
 
 analysis_core/alerts.py 中的公开函数用于原始核对。score_slice 保留当前参数及返回语义。原始资料查询不代表已经完成统计识别或政策判断。examples/study.json 是可读的合成资料，数值不表示真实地区或人群。
 

@@ -58,5 +58,13 @@ class ExistingContracts(unittest.TestCase):
     def test_group_presence(self):
         self.assertEqual(len(group_rows([{},dict(x=None)],['x'])),2)
 
+    def test_unknown_is_not_negative(self):
+        rows=self.study.tables['labels']
+        self.assertEqual(alerts.visible_label_rows(rows,'2026-10-02'),[])
+        self.assertEqual(len(alerts.visible_label_rows(rows,'2026-10-03')),1)
+        self.assertEqual(alerts.recorded_selection(self.study.tables['alerts']),{'total':2,'selected':1})
+        with self.assertRaises(ValueError):
+            alerts.recorded_selection([dict(self.study.tables['alerts'][0],probability=0)])
+
 if __name__=='__main__':
     unittest.main()

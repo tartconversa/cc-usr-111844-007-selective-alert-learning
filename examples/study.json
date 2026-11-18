@@ -29,6 +29,7 @@
     ],
     "labels": [
       {
+        "label_id": "l1",
         "alert": "a1",
         "observed_at": "2026-10-03",
         "label": 1,
